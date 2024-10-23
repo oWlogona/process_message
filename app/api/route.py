@@ -1,9 +1,8 @@
 import json
 import uuid
 
-from fastapi import FastAPI, HTTPException
-
 from api.schemas.text_payload import TextPayload
+from fastapi import FastAPI, HTTPException
 from services.rabbit.connection import connect_to_rabbitmq
 from services.storage.models import get_task
 
@@ -27,11 +26,9 @@ async def process_text(payload: TextPayload):
     Returns:
         dict: A response containing the generated task ID.
     """
-    # Підключення до RabbitMQ
     connection, channel = connect_to_rabbitmq()
     task_id = str(uuid.uuid4())
 
-    # Перевірка довжини тексту в залежності від типу
     max_length = TEXT_LENGTH_LIMITS.get(payload.type)
     if max_length is None:
         raise HTTPException(status_code=400, detail="Invalid text type provided.")
@@ -41,7 +38,6 @@ async def process_text(payload: TextPayload):
             status_code=400, detail=f"Text too long for '{payload.type}'."
         )
 
-    # Публікація повідомлення в RabbitMQ
     message = json.dumps(
         {"task_id": task_id, "text": payload.text, "type": payload.type}
     )

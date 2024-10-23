@@ -1,4 +1,5 @@
 import os
+
 import pika
 from loguru import logger
 
@@ -6,6 +7,7 @@ RABBITMQ_URL = os.environ.get("RABBITMQ_URL")
 
 if RABBITMQ_URL is None:
     raise ValueError("RABBITMQ_URL is not set in the environment variables.")
+
 
 def connect_to_rabbitmq(url: str = RABBITMQ_URL):
     """Establish a connection to RabbitMQ."""

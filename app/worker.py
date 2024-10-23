@@ -1,6 +1,5 @@
-from loguru import logger
-
 from logic.consumer import consume
+from loguru import logger
 from services.rabbit.connection import connect_to_rabbitmq
 
 if __name__ == "__main__":

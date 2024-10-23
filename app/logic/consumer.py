@@ -1,9 +1,8 @@
 import asyncio
 import json
 
-from loguru import logger
-
 from common.tasks import process_text
+from loguru import logger
 from services.storage.models import add_task
 
 

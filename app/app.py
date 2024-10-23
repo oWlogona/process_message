@@ -1,6 +1,5 @@
-from fastapi import FastAPI
-
 from api import setup_api
+from fastapi import FastAPI
 from services.storage.database import create_tables, database
 
 

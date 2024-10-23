@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, Text
-
 from services.storage.database import Base, database
+from sqlalchemy import Column, Integer, String, Text
 
 
 class TextProcessingTask(Base):
